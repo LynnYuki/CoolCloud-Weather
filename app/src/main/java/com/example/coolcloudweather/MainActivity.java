@@ -728,7 +728,7 @@ public class MainActivity extends BaseActivity{
     }
 
     /**
-     * 设置自身的静态跳转函数
+     * 设置自身的静态跳转函数选择城市的时候调用
      */
     public static void actionStart(Context context ,String cityName){
         Intent intent = new Intent(context, MainActivity.class);

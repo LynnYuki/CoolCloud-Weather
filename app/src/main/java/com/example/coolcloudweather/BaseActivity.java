@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         return networkInfo;
     }
 
-    // Toast 长时间
+    // Toast简单包装函数
     public void showShort(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }

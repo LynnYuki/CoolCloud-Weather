@@ -112,6 +112,7 @@ public class ChooseAreaActivity extends BaseActivity {
         if (!TextUtils.isEmpty(cityName)){
             // 如果不为空，则进行查询
             if (getNetworkInfo() != null && getNetworkInfo().isAvailable()){
+                //从和风数据源查找城市
                 String address = "https://api.heweather.com/v5/search?city=" + cityName + "&key=bc0418b57b2d4918819d3974ac1285d9";
                 requestData(address);
             }else{
@@ -149,6 +150,7 @@ public class ChooseAreaActivity extends BaseActivity {
         });
     }
 
+    //显示搜索到的城市
     public void showCity(City city){
         cityList.clear();
         if ("ok".equals(city.status) && city != null){
@@ -182,7 +184,7 @@ public class ChooseAreaActivity extends BaseActivity {
     }
 
     /**
-     * 显示数据库中保存的信息
+     * 显示搜索记录
      */
     public void showRecond(){
         recondList.clear();
