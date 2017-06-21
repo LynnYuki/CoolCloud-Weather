@@ -31,6 +31,7 @@ import okhttp3.Response;
 public class ChooseAreaActivity extends BaseActivity {
     private EditText searchText;
     private Button searchButton;
+    private Button delteall;
     private ListView listView;
     private ListView listViewRecond;
     private List<String> cityList = new ArrayList<>();
@@ -54,6 +55,7 @@ public class ChooseAreaActivity extends BaseActivity {
         listView = (ListView)findViewById(R.id.list_view);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cityList);
         listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -66,10 +68,11 @@ public class ChooseAreaActivity extends BaseActivity {
                 }
             }
         });
-
+        delteall = (Button)findViewById(R.id.deleteall_button);
         listViewRecond = (ListView)findViewById(R.id.list_view_recond);
         recondAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recondList);
         listViewRecond.setAdapter(recondAdapter);
+
         listViewRecond.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -95,6 +98,7 @@ public class ChooseAreaActivity extends BaseActivity {
     @Override
     public void initListener() {
         searchButton.setOnClickListener(this);
+        delteall.setOnClickListener(this);
     }
 
     @Override
@@ -102,6 +106,9 @@ public class ChooseAreaActivity extends BaseActivity {
         switch (v.getId()){
             case R.id.search_button:
                 showSearchResult();
+                break;
+            case R.id.deleteall_button:
+                delteall();
                 break;
             default:
         }
@@ -123,6 +130,8 @@ public class ChooseAreaActivity extends BaseActivity {
         }
 
     }
+
+
 
     public void requestData(String address){
         HttpUtil.sendOkHttpRequest(address, new Callback() {
@@ -195,4 +204,18 @@ public class ChooseAreaActivity extends BaseActivity {
         recondAdapter.notifyDataSetChanged();
         listViewRecond.setSelection(0);
     }
+
+    /**
+     * 删除搜索记录
+     */
+
+    public void delteall(){
+        DataSupport.deleteAll(CityRecond.class);
+        recondList.clear();
+        recondAdapter.notifyDataSetChanged();
+        listViewRecond.setSelection(0);
+        showShort("清除成功");
+
+    }
+
 }

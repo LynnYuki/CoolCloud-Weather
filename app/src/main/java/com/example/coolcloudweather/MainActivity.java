@@ -230,6 +230,7 @@ public class MainActivity extends BaseActivity{
         // 定位权限初始化
         mlocationClient = new LocationClient(getApplicationContext());
         mlocationClient.registerLocationListener(new MyLocationListener());
+
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
         }
@@ -243,17 +244,13 @@ public class MainActivity extends BaseActivity{
         if (!permissionList.isEmpty()){
             String[] permissions = permissionList.toArray(new String[permissionList.size()]);
             ActivityCompat.requestPermissions(MainActivity.this, permissions, 1);
-        }else{
-            requestLocation();
         }
 
         swipeRefresh = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh);
+         //设置刷新进度条颜色
         swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
 
 
-    }
-    private void requestLocation(){
-        mlocationClient.start();
     }
 
     /**
@@ -272,7 +269,7 @@ public class MainActivity extends BaseActivity{
                             return;
                         }
                     }
-                    requestLocation();
+                    mlocationClient.start();
                 }else{
                     // 发生未知错误
                     Toast.makeText(this, "权限申请出现未知错误", Toast.LENGTH_SHORT).show();
@@ -301,12 +298,15 @@ public class MainActivity extends BaseActivity{
                     Snackbar.make(swipeRefresh, "当前无网络，无法刷新 %>_<% ",Snackbar.LENGTH_LONG).setAction("去设置网络", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            //设置网络链接
                             Intent intent = new Intent(Settings.ACTION_SETTINGS);
                             startActivity(intent);
                         }
                     }).show();
+                    //刷新结束隐藏进度条
                     swipeRefresh.setRefreshing(false);
                 }else{
+                    //刷新加载天气信息
                     showAnimationAlpha(weaherNowLayout);
                 }
             }
@@ -331,6 +331,7 @@ public class MainActivity extends BaseActivity{
                 if (getNetworkInfo() != null && getNetworkInfo().isAvailable()){
                     // 查询完之后显示 coordinatorLayout.setVisibility(View.VISIBLE);
                     LocationClientOption option = new LocationClientOption();
+                    //返回定位地址信息
                     option.setIsNeedAddress(true);
                     mlocationClient.setLocOption(option);
                     mlocationClient.start();
@@ -346,7 +347,7 @@ public class MainActivity extends BaseActivity{
     }
 
     /**
-     * 显示对话框
+     * 显示设置网络对话框
      */
     public void showDialog(String title, String info, final int SIGN){
         final AlertDialog.Builder alertDialog  = new AlertDialog.Builder(MainActivity.this);
@@ -406,7 +407,7 @@ public class MainActivity extends BaseActivity{
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        showShort("获取天气信息1失败");
+                        showShort("数据源服务器错误，获取天气信息失败");
                     }
                 });
             }
@@ -425,7 +426,7 @@ public class MainActivity extends BaseActivity{
                             editor.apply();
                             showWeatherInfo(weather);
                         }else{
-                            showShort("获取天气信息2失败");
+                            showShort("获取天气信息失败");
                         }
                     }
                 });
@@ -470,7 +471,7 @@ public class MainActivity extends BaseActivity{
                 weatherPic.setImageResource(resId);
             }
 
-
+            //解析获得的时间转化为星期数
             dateText.setText(Time.parseTime(forecast.date));
             infoText.setText(forecast.more.info);
             maxMinText.setText(forecast.temperature.max +"°"+ " ～ " + forecast.temperature.min+"°" );

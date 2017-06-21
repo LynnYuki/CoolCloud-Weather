@@ -14,6 +14,7 @@
     <string name="five_hour">五小时</string>
     <string name="ten_hour">十小时</string>
     <string name="search">搜索</string>
+    <string name="delteall">清空搜索记录</string>
     <string name="search_value">查找的城市</string>
     <string name="search_record">查找记录</string>
     <string name="about_weather">关于天气</string>
