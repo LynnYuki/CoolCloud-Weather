@@ -9,6 +9,9 @@ import android.content.pm.PackageManager;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -63,10 +66,12 @@ public class MainActivity extends BaseActivity{
 
     private ScrollView weatherLayout;
 
-    private LinearLayout mainLayout;
+    private CoordinatorLayout mainLayout;
+
 
     private TextView titleCity;
 
+    private FloatingActionButton fab_button;
     List<String> permissionList  = new ArrayList<>();
 
     // 以下是 weather_now的控件
@@ -182,8 +187,8 @@ public class MainActivity extends BaseActivity{
         weatherLayout = (ScrollView)findViewById(R.id.weather_layout);
         titleCity = (TextView)findViewById(R.id.title_city);
         forecastLayout = (LinearLayout)findViewById(R.id.forecast_layout);
-        mainLayout = (LinearLayout) findViewById(R.id.main_layout);
-
+        mainLayout = (CoordinatorLayout) findViewById(R.id.main_layout);
+        fab_button = (FloatingActionButton) findViewById(R.id.fab_button);
         // weather_now
         degreeText = (TextView)findViewById(R.id.degree_text);
         weatherInfoText = (TextView)findViewById(R.id.weather_info_text);
@@ -198,6 +203,7 @@ public class MainActivity extends BaseActivity{
 
         recyclerView = (RecyclerView)findViewById(R.id.weather_hourly);
         hourAdapter = new HourAdapter(hourList);
+        //设置线性布局方式
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -290,6 +296,7 @@ public class MainActivity extends BaseActivity{
         uvBtn.setOnClickListener(this);
         clothesBtn.setOnClickListener(this);
         coldBtn.setOnClickListener(this);
+        fab_button.setOnClickListener(this);
 
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -677,6 +684,10 @@ public class MainActivity extends BaseActivity{
     public void onClick(View v) {
         // 通过 SuggestionInfoActivity 中的静态方法直接传值
         switch (v.getId()){
+            case R.id.fab_button:
+                Intent intent = new Intent(this,ChooseAreaActivity.class);
+                startActivity(intent);
+                break;
             case R.id.comfort_button:
                 SuggestionInfoActivity.actionStart(this, comfortInfo,comfortSign,"舒适度指数");
                 break;

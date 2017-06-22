@@ -210,12 +210,22 @@ public class ChooseAreaActivity extends BaseActivity {
      */
 
     public void delteall(){
-        DataSupport.deleteAll(CityRecond.class);
-        recondList.clear();
-        recondAdapter.notifyDataSetChanged();
-        listViewRecond.setSelection(0);
-        showShort("清除成功");
 
-    }
+        List<CityRecond> list = DataSupport.select("cityName").find(CityRecond.class);
+        for (CityRecond recond:list){
+            recondList.add(recond.getCityName());
+        }
+        if(!recondList.isEmpty()){
+            DataSupport.deleteAll(CityRecond.class);
+            recondList.clear();
+            recondAdapter.notifyDataSetChanged();
+            showShort("清除成功");
+        }else
+            {
+                showShort("没有搜索记录");
+            }
+
+        }
+
 
 }
