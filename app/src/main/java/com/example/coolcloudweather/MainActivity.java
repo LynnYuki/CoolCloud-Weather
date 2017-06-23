@@ -99,7 +99,6 @@ public class MainActivity extends BaseActivity{
 
 
     // 以下是 weather_aqi的控件
-
     private TextView aqiText;
 
     private TextView pm25Text;
@@ -161,9 +160,6 @@ public class MainActivity extends BaseActivity{
 
 
     public SwipeRefreshLayout swipeRefresh;
-
-    //private String mWeatherId;
-
     private long triggerAtTimefirst = 0;
 
     // 定位
@@ -183,12 +179,12 @@ public class MainActivity extends BaseActivity{
         }
 
         // 初始化各种控件
-
         weatherLayout = (ScrollView)findViewById(R.id.weather_layout);
         titleCity = (TextView)findViewById(R.id.title_city);
         forecastLayout = (LinearLayout)findViewById(R.id.forecast_layout);
         mainLayout = (CoordinatorLayout) findViewById(R.id.main_layout);
         fab_button = (FloatingActionButton) findViewById(R.id.fab_button);
+
         // weather_now
         degreeText = (TextView)findViewById(R.id.degree_text);
         weatherInfoText = (TextView)findViewById(R.id.weather_info_text);
@@ -203,6 +199,7 @@ public class MainActivity extends BaseActivity{
 
         recyclerView = (RecyclerView)findViewById(R.id.weather_hourly);
         hourAdapter = new HourAdapter(hourList);
+
         //设置线性布局方式
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -544,6 +541,7 @@ public class MainActivity extends BaseActivity{
                 so2Text.setText(infoText);
             }
         }
+        //设置字体显示粗体。
         aqiText.getPaint().setFakeBoldText(true);
         pm25Text.getPaint().setFakeBoldText(true);
         coText.getPaint().setFakeBoldText(true);
@@ -643,6 +641,9 @@ public class MainActivity extends BaseActivity{
                 intent1.putExtra("weather_title","设置");
                 startActivity(intent1);
                 break;
+            case R.id.city_manage:
+                Intent intent = new Intent(this,CityManageActivity.class);
+                startActivity(intent);
             case R.id.night_model:
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = pref.edit();

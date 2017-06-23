@@ -3,9 +3,12 @@ package com.example.coolcloudweather;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,52 +45,99 @@ public class ChooseAreaActivity extends BaseActivity {
     @Override
     public void initView() {
         setContentView(R.layout.activity_choose_area);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("选择地区");
         }
 
-        searchText = (EditText)findViewById(R.id.search_text);
-        searchButton = (Button)findViewById(R.id.search_button);
-        listView = (ListView)findViewById(R.id.list_view);
+        searchText = (EditText) findViewById(R.id.search_text);
+        searchButton = (Button) findViewById(R.id.search_button);
+        listView = (ListView) findViewById(R.id.list_view);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cityList);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (getNetworkInfo() != null && getNetworkInfo().isAvailable()){
+                if (getNetworkInfo() != null && getNetworkInfo().isAvailable()) {
                     String cityName = cityList.get(position);
                     MainActivity.actionStart(ChooseAreaActivity.this, cityName);
                     finish();
-                }else{
+                } else {
                     showShort("当前没有网络");
                 }
             }
         });
-        delteall = (Button)findViewById(R.id.deleteall_button);
-        listViewRecond = (ListView)findViewById(R.id.list_view_recond);
+        delteall = (Button) findViewById(R.id.deleteall_button);
+        listViewRecond = (ListView) findViewById(R.id.list_view_recond);
         recondAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recondList);
         listViewRecond.setAdapter(recondAdapter);
 
         listViewRecond.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (getNetworkInfo() != null && getNetworkInfo().isAvailable()){
+                if (getNetworkInfo() != null && getNetworkInfo().isAvailable()) {
                     String cityName = recondList.get(position);
                     MainActivity.actionStart(ChooseAreaActivity.this, cityName);
                     finish();
-                }else{
+                } else {
                     showShort("当前没有网络");
                 }
             }
         });
         showRecond();
 
+        //设置搜索记录长按删除功能
+
+        listViewRecond.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                menu.add(0, 0, 0, "删除记录");
+
+            }
+        });
+
+        listViewRecond.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                listViewRecond.showContextMenu();
+                return true;
+
+            }
+
+        });
     }
+
+    //长按菜单响应函数
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+        String id = String.valueOf(info.id);
+        switch (item.getItemId()){
+            case 0:
+                //从数据库删除对应id子项
+                DataSupport.delete(CityRecond.class, info.id);
+                //recondList.remove(Integer.parseInt(id));
+                recondAdapter.notifyDataSetChanged();
+                showShort("删除成功");
+                Log.d("TAG","删除数据是"+info);
+                return true;
+            default:
+
+        }
+        return super.onContextItemSelected(item);
+    }
+
+
+
+
+
+
+
 
     @Override
     public void initData() {
@@ -108,7 +158,7 @@ public class ChooseAreaActivity extends BaseActivity {
                 showSearchResult();
                 break;
             case R.id.deleteall_button:
-                delteall();
+                deleteall();
                 break;
             default:
         }
@@ -206,10 +256,10 @@ public class ChooseAreaActivity extends BaseActivity {
     }
 
     /**
-     * 删除搜索记录
+     * 清空搜索记录
      */
 
-    public void delteall(){
+    public void deleteall(){
 
         List<CityRecond> list = DataSupport.select("cityName").find(CityRecond.class);
         for (CityRecond recond:list){

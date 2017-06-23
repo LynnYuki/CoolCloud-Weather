@@ -16,6 +16,7 @@ public class AboutApplicationActivity extends BaseActivity {
     private Button blog;
     @Override
     public void initView() {
+
         setContentView(R.layout.activity_about_application);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
