@@ -1,5 +1,6 @@
 package com.example.coolcloudweather;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -31,6 +32,8 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+import static android.view.ContextMenu.*;
+
 public class ChooseAreaActivity extends BaseActivity {
     private EditText searchText;
     private Button searchButton;
@@ -39,8 +42,10 @@ public class ChooseAreaActivity extends BaseActivity {
     private ListView listViewRecond;
     private List<String> cityList = new ArrayList<>();
     private List<String> recondList = new ArrayList<>();
+    private List<Integer>delerecondList = new ArrayList<>();
     ArrayAdapter<String> adapter;
     ArrayAdapter<String> recondAdapter;
+    int selectPosition = 0;
 
     @Override
     public void initView() {
@@ -94,7 +99,7 @@ public class ChooseAreaActivity extends BaseActivity {
 
         listViewRecond.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
-            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
                 menu.add(0, 0, 0, "删除记录");
 
             }
@@ -104,7 +109,10 @@ public class ChooseAreaActivity extends BaseActivity {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                selectPosition = position;
                 listViewRecond.showContextMenu();
+                Log.d("TAF4","点击位置"+position);
                 return true;
 
             }
@@ -113,18 +121,24 @@ public class ChooseAreaActivity extends BaseActivity {
     }
 
     //长按菜单响应函数
-    public boolean onContextItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(MenuItem item){
 
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-        String id = String.valueOf(info.id);
+
         switch (item.getItemId()){
             case 0:
-                //从数据库删除对应id子项
-                DataSupport.delete(CityRecond.class, info.id);
-                //recondList.remove(Integer.parseInt(id));
+                //从数据库查询数据id放入list
+                List<CityRecond> list = DataSupport.select("id").find(CityRecond.class);
+                for (CityRecond recond:list){
+                    delerecondList.add(recond.getId());
+                    }
+                //删除listview之中item对应id的数据
+                DataSupport.delete(CityRecond.class, delerecondList.get(Integer.parseInt(String.valueOf(selectPosition))));
+                recondList.remove(selectPosition);
                 recondAdapter.notifyDataSetChanged();
+                Log.d("TAG","删除数据是"+delerecondList.get(Integer.parseInt(String.valueOf(selectPosition))));
                 showShort("删除成功");
-                Log.d("TAG","删除数据是"+info);
+
                 return true;
             default:
 
