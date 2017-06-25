@@ -112,7 +112,7 @@ public class ChooseAreaActivity extends BaseActivity {
 
                 selectPosition = position;
                 listViewRecond.showContextMenu();
-                Log.d("TAF4","点击位置"+position);
+                Log.d("TAG4","点击位置"+position);
                 return true;
 
             }
@@ -127,16 +127,18 @@ public class ChooseAreaActivity extends BaseActivity {
 
         switch (item.getItemId()){
             case 0:
-                //从数据库查询数据id放入list
+                //从数据库查询数据id放入list数组
                 List<CityRecond> list = DataSupport.select("id").find(CityRecond.class);
                 for (CityRecond recond:list){
                     delerecondList.add(recond.getId());
                     }
                 //删除listview之中item对应id的数据
-                DataSupport.delete(CityRecond.class, delerecondList.get(Integer.parseInt(String.valueOf(selectPosition))));
+                DataSupport.delete(CityRecond.class, delerecondList.get(selectPosition));
                 recondList.remove(selectPosition);
                 recondAdapter.notifyDataSetChanged();
-                Log.d("TAG","删除数据是"+delerecondList.get(Integer.parseInt(String.valueOf(selectPosition))));
+                listViewRecond.setSelection(0);
+                Log.d("TAG","删除数据是"+delerecondList.get(selectPosition));
+                Log.d("TAG0","删除的位置是"+selectPosition);
                 showShort("删除成功");
 
                 return true;
@@ -196,7 +198,10 @@ public class ChooseAreaActivity extends BaseActivity {
     }
 
 
-
+    /**
+     *
+     * 请求数据
+     */
     public void requestData(String address){
         HttpUtil.sendOkHttpRequest(address, new Callback() {
             @Override
@@ -238,7 +243,7 @@ public class ChooseAreaActivity extends BaseActivity {
     }
 
     /**
-     * 保存城市名称 -> 数据库
+     * 保存城市名称到数据库
      */
     public void solveSearchRecond(String cityName){
         CityRecond cityRecond = new CityRecond();

@@ -272,7 +272,6 @@ public class MainActivity extends BaseActivity{
                             return;
                         }
                     }
-                    mlocationClient.start();
                 }else{
                     // 发生未知错误
                     Toast.makeText(this, "权限申请出现未知错误", Toast.LENGTH_SHORT).show();
