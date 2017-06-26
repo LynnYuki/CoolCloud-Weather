@@ -15,6 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.example.coolcloudweather.util.HttpUtil;
 import com.example.coolcloudweather.R;
 import com.example.coolcloudweather.db.CityRecond;
@@ -36,7 +40,9 @@ import static android.view.ContextMenu.*;
 
 public class ChooseAreaActivity extends BaseActivity {
     private EditText searchText;
+    private int selectPosition = 0;
     private Button searchButton;
+    private Button reloctaion;
     private Button delteall;
     private ListView listView;
     private ListView listViewRecond;
@@ -45,7 +51,9 @@ public class ChooseAreaActivity extends BaseActivity {
     private List<Integer>delerecondList = new ArrayList<>();
     ArrayAdapter<String> adapter;
     ArrayAdapter<String> recondAdapter;
-    int selectPosition = 0;
+    // 重新定位
+    public LocationClient mlocationClient;
+    public static String currentPosition = "";
 
     @Override
     public void initView() {
@@ -57,7 +65,9 @@ public class ChooseAreaActivity extends BaseActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("选择地区");
         }
-
+        /**
+         * 搜索城市模块
+         */
         searchText = (EditText) findViewById(R.id.search_text);
         searchButton = (Button) findViewById(R.id.search_button);
         listView = (ListView) findViewById(R.id.list_view);
@@ -76,7 +86,12 @@ public class ChooseAreaActivity extends BaseActivity {
                 }
             }
         });
+
+        /**
+         * 显示搜索记录模块
+         */
         delteall = (Button) findViewById(R.id.deleteall_button);
+        reloctaion = (Button) findViewById(R.id.reloction_button);
         listViewRecond = (ListView) findViewById(R.id.list_view_recond);
         recondAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recondList);
         listViewRecond.setAdapter(recondAdapter);
@@ -118,6 +133,11 @@ public class ChooseAreaActivity extends BaseActivity {
             }
 
         });
+
+        // 定位初始化
+        mlocationClient = new LocationClient(this);
+        mlocationClient.registerLocationListener(new MyLocationListener());
+
     }
 
     //长按菜单响应函数
@@ -149,10 +169,24 @@ public class ChooseAreaActivity extends BaseActivity {
     }
 
 
+    public class MyLocationListener implements BDLocationListener {
+        @Override
+        public void onReceiveLocation(BDLocation bdLocation) {
+            currentPosition = bdLocation.getCity();
+            if (currentPosition != null){
+                MainActivity.actionStart(ChooseAreaActivity.this, currentPosition);//传递获得的城市名称给主活动
+                showShort(currentPosition + " 定位成功");
+                finish();
+            }else{
+                showShort("定位错误，可能没有获取到定位权限，请打开定位权限后重新下打开此应用");
+            }
+        }
 
+        @Override
+        public void onConnectHotSpotMessage(String s, int i) {
 
-
-
+        }
+    }
 
 
     @Override
@@ -165,6 +199,7 @@ public class ChooseAreaActivity extends BaseActivity {
     public void initListener() {
         searchButton.setOnClickListener(this);
         delteall.setOnClickListener(this);
+        reloctaion.setOnClickListener(this);
     }
 
     @Override
@@ -172,6 +207,9 @@ public class ChooseAreaActivity extends BaseActivity {
         switch (v.getId()){
             case R.id.search_button:
                 showSearchResult();
+                break;
+            case R.id.reloction_button:
+                reloctaion();
                 break;
             case R.id.deleteall_button:
                 deleteall();
@@ -296,5 +334,30 @@ public class ChooseAreaActivity extends BaseActivity {
 
         }
 
+    /**
+     * 重新定位
+     */
+    public  void reloctaion(){
 
+        if (getNetworkInfo() != null && getNetworkInfo().isAvailable()){
+                LocationClientOption option = new LocationClientOption();
+                //返回定位地址信息
+                option.setIsNeedAddress(true);
+                mlocationClient.setLocOption(option);
+                mlocationClient.start();
+
+    }else{
+            showShort("没有网络链接，请检查网络设置。");
+        }
+    }
+
+    /**
+     * 停止定位
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mlocationClient.stop();
+
+    }
 }

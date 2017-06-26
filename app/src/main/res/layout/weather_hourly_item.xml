@@ -20,7 +20,7 @@
         android:textSize="14sp"
         android:layout_below="@+id/hour_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/hout_time"
@@ -30,7 +30,7 @@
         android:textSize="14sp"
         android:layout_above="@+id/hour_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="4dp"/>
+        android:layout_marginBottom="16dp"/>
 
 
 </RelativeLayout>

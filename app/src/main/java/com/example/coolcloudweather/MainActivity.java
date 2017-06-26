@@ -275,7 +275,7 @@ public class MainActivity extends BaseActivity{
                 }else{
                     // 发生未知错误
                     Toast.makeText(this, "权限申请出现未知错误", Toast.LENGTH_SHORT).show();
-                        finish();
+                        //finish();
                 }
                 break;
             default:
@@ -319,9 +319,13 @@ public class MainActivity extends BaseActivity{
     @Override
     public void initData() {
         String cityName = getIntent().getStringExtra("cityName");
+        String currentPosition = getIntent().getStringExtra("currentPosition");
         if (!TextUtils.isEmpty(cityName)){
             requestWeather(cityName);
-        }else{
+        }else if(!TextUtils.isEmpty(currentPosition)){
+            requestWeather(currentPosition);
+        }
+        else{
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             String weatherString = prefs.getString("weatherResponse", null);        // weather 保存API 返回的字符串
             if (weatherString != null){
@@ -386,7 +390,7 @@ public class MainActivity extends BaseActivity{
                 requestWeather(currentPosition);//传入获得的城市名称
                 showShort(currentPosition + " 定位成功");
             }else{
-                showShort("没有获取到定位权限，请打开定位权限后再打开此应用");
+                showShort("定位错误，可能没有获取到定位权限，请打开定位权限后重新下打开此应用");
         }
         }
 
@@ -640,9 +644,6 @@ public class MainActivity extends BaseActivity{
                 intent1.putExtra("weather_title","设置");
                 startActivity(intent1);
                 break;
-            case R.id.city_manage:
-                Intent intent = new Intent(this,CityManageActivity.class);
-                startActivity(intent);
             case R.id.night_model:
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = pref.edit();

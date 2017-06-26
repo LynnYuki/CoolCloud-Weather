@@ -7,7 +7,7 @@ import static android.R.attr.value;
 
 public class Time {
     /**
-     * 输入时间 XXXX-XX-XX 的字符串, 放回中文指代的时间, 比如 "今天 02/09"
+     * 解析API传回的时间 XXXX-XX-XX 的字符串, 转换为中文指代的时间, 比如 "今天 02/09"
      */
     public static String parseTime(String timeText){
         DateTime dateTime = new DateTime();

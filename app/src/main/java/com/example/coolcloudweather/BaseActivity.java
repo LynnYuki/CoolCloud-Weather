@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,7 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d("BASE",getClass().getSimpleName());
         initView();
         initData();
         initListener();
@@ -25,7 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     // 初始化控件
     public abstract void initView();
 
-    // 初始化疏数据
+    // 初始化数据
     public abstract void initData();
 
     // 初始化监听器

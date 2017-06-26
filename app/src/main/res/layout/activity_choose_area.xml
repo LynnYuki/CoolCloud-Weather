@@ -108,8 +108,20 @@
                 android:textColor="@color/colorFont"
                 tools:ignore="InefficientWeight" />
             <Button
+                android:id="@+id/reloction_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/reloction"
+                android:textSize="16sp"
+                android:textColor="@color/colorFont"
+                style="?android:attr/borderlessButtonStyle"
+                android:background="@drawable/ripple"
+                />
+            <Button
                 android:id="@+id/deleteall_button"
                 android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/delteall"
                 android:textSize="16sp"
                 android:textColor="@color/colorFont"

@@ -5,7 +5,9 @@ import android.app.Activity;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 活动管理器
+ */
 public class TaskKiller {
 
     public static List<Activity> activityList = new ArrayList<>();
