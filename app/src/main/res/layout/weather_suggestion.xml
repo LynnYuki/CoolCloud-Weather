@@ -13,19 +13,19 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="2.5dp"
+            android:layout_weight="1"
             android:background="@color/colorWhite"
 
             tools:ignore="RtlHardcoded">
 
             <Button
                 android:id="@+id/comfort_button"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="?android:attr/borderlessButtonStyle"
                 android:background="@drawable/ripple" />
 
             <TextView
@@ -35,14 +35,14 @@
                 android:layout_centerInParent="true"
                 android:text="@string/comfortable"
                 android:textColor="@color/colorFont"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/comfort_pic"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
                 android:layout_above="@+id/comfort"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
                 tools:ignore="ContentDescription" />
 
@@ -50,28 +50,28 @@
                 android:id="@+id/comfort_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/comfort"
-                android:textSize="18sp"/>
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_marginLeft="2.5dp"
             android:layout_marginRight="2.5dp"
+            android:layout_weight="1"
             android:background="@color/colorWhite">
 
             <Button
                 android:id="@+id/car_wash_button"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="?android:attr/borderlessButtonStyle"
-                android:background="@drawable/ripple"/>
+                android:background="@drawable/ripple" />
 
             <TextView
                 android:id="@+id/car_wash"
@@ -80,14 +80,14 @@
                 android:layout_centerInParent="true"
                 android:text="@string/car_wash"
                 android:textColor="@color/colorFont"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/car_wash_pic"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
                 android:layout_above="@+id/car_wash"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
                 tools:ignore="ContentDescription" />
 
@@ -95,10 +95,10 @@
                 android:id="@+id/car_wash_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/car_wash"
+                android:layout_centerHorizontal="true"
                 android:textColor="@color/colorBlack"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
 
         </RelativeLayout>
@@ -106,19 +106,19 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_marginLeft="2.5dp"
             android:layout_marginRight="5dp"
+            android:layout_weight="1"
             android:background="@color/colorWhite"
             tools:ignore="RtlHardcoded">
 
             <Button
                 android:id="@+id/sport_button"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                style="?android:attr/borderlessButtonStyle"
-                android:background="@drawable/ripple"/>
+                android:background="@drawable/ripple" />
 
             <TextView
                 android:id="@+id/sport"
@@ -127,14 +127,15 @@
                 android:layout_centerInParent="true"
                 android:text="@string/sport"
                 android:textColor="@color/colorFont"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/sport_pic"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
                 android:layout_above="@+id/sport"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
                 android:scaleType="centerCrop"
                 tools:ignore="ContentDescription" />
 
@@ -142,10 +143,10 @@
                 android:id="@+id/sport_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/sport"
+                android:layout_centerHorizontal="true"
                 android:textColor="@color/colorBlack"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
 
         </RelativeLayout>
@@ -192,6 +193,7 @@
                 android:layout_height="50dp"
                 android:layout_above="@+id/cold"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
                 android:scaleType="centerCrop"
                 tools:ignore="ContentDescription" />
 
@@ -237,6 +239,7 @@
                 android:layout_height="50dp"
                 android:layout_above="@+id/clothes"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
                 tools:ignore="ContentDescription" />
 
             <TextView
