@@ -37,5 +37,10 @@
     <string name="setting">设置</string>
     <string name="night_model">夜间模式</string>
     <string name="reloction">重新定位</string>
+    <string name="level">预警水平:</string>
+    <string name="stat">预警状态:</string>
+    <string name="type">预警类型:</string>
+    <string name="title">预警名称:</string>
+    <string name="alarm_info">预警信息:</string>
 </resources>
 

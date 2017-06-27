@@ -84,7 +84,20 @@ public class MainActivity extends BaseActivity{
 
     private TextView updateTimeText;
 
-    // 以下是 weather_hour 的控件
+    //以下是weather_alarms的控件
+    private TextView title;
+
+    private TextView type;
+
+    private TextView level;
+
+    private TextView stat;
+
+    private TextView txt;
+
+    private LinearLayout alarm;
+
+    // 以下是 weather_hour的控件
     private TextView hourTime;
 
     private  TextView hourText;
@@ -191,7 +204,13 @@ public class MainActivity extends BaseActivity{
         weaherNowLayout = (RelativeLayout)findViewById(R.id.weather_now_layout);
         updateTimeText = (TextView)findViewById(R.id.update_time_text);
 
-
+        //weather_alarms
+        title = (TextView)findViewById(R.id.title);
+        type = (TextView)findViewById(R.id.type);
+        level = (TextView)findViewById(R.id.level);
+        stat = (TextView)findViewById(R.id.stat);
+        txt = (TextView )findViewById(R.id.txt);
+        alarm = (LinearLayout)findViewById(R.id.alarm_layout);
         // weather_hour
         hourDegree = (TextView)findViewById(R.id.hour_degree);
         hourText = (TextView)findViewById(R.id.hour_text);
@@ -200,7 +219,7 @@ public class MainActivity extends BaseActivity{
         recyclerView = (RecyclerView)findViewById(R.id.weather_hourly);
         hourAdapter = new HourAdapter(hourList);
 
-        //设置线性布局方式
+        //加载小时预报布局
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -343,7 +362,7 @@ public class MainActivity extends BaseActivity{
                     mlocationClient.setLocOption(option);
                     mlocationClient.start();
                 }else{
-                    showDialog(null, "当前无网络，请打开网络",SIGN_NO_INTERNET);
+                    showDialog("当前无网络，请打开网络",SIGN_NO_INTERNET);
                 }
 
             }
@@ -354,9 +373,9 @@ public class MainActivity extends BaseActivity{
     }
 
     /**
-     * 显示设置网络对话框
+     * 显示设置网络或者显示天气警告信息对话框
      */
-    public void showDialog(String title, String info, final int SIGN){
+    public void showDialog(String info, final int SIGN){
         final AlertDialog.Builder alertDialog  = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setMessage(info);
         alertDialog.setCancelable(false);
@@ -484,7 +503,7 @@ public class MainActivity extends BaseActivity{
             maxMinText.setText(forecast.temperature.max +"°"+ " ～ " + forecast.temperature.min+"°" );
             forecastLayout.addView(view);
         }
-
+        //加载小时预报数据到hourList
         hourList.clear();
         for (Hourly hourly:weather.hourlyList){
             Hour hour = new Hour();
@@ -587,29 +606,17 @@ public class MainActivity extends BaseActivity{
 
         // 天气预警
         if (weather.alarms != null){
-            String level = weather.alarms.level;
-            String title = weather.alarms.title;
-            String text = weather.alarms.txt;
-            showDialog(title, text, SIGN_ALARMS);
-        }else{
-//            showDialog("无", "当前没有预警信息，请放心出行", SIGN_ALARMS);
-        }
+              title.setText(weather.alarms.title);
+              level.setText(weather.alarms.level);
+              type.setText(weather.alarms.type);
+              stat.setText(weather.alarms.stat);
+              txt.setText(weather.alarms.txt);
+              alarm.setVisibility(View.VISIBLE);
 
-        // 通知栏
-//        Intent intent = new Intent(this, MainActivity.class);
-//        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
-//        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        Notification notification = new NotificationCompat.Builder(this)
-//                .setContentTitle(degree + "°")
-//                .setContentText(comfortInfo)
-//                .setWhen(System.currentTimeMillis())
-//                .setSmallIcon(R.mipmap.ic_launcher)
-//                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-//                .setContentIntent(pi)
-//                .setDefaults(NotificationCompat.DEFAULT_ALL)
-//                .setPriority(NotificationCompat.PRIORITY_MAX)
-//                .build();
-//        manager.notify(1, notification);
+        }else{
+            alarm.setVisibility(View.GONE);
+            //showDialog("当前没有预警信息，请放心出行", SIGN_ALARMS);
+        }
 
     }
 

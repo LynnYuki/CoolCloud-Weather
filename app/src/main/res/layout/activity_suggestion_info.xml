@@ -53,6 +53,13 @@
                 android:textColor="@color/colorFont"
                 tools:ignore="RtlHardcoded" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:src="@drawable/ic_lenmon"
+                tools:ignore="ContentDescription" />
+
         </LinearLayout>
 
 

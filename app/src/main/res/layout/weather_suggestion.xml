@@ -41,6 +41,7 @@
                 android:id="@+id/comfort_pic"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:src="@drawable/ic_comfort"
                 android:layout_above="@+id/comfort"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
@@ -86,6 +87,7 @@
                 android:id="@+id/car_wash_pic"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:src="@drawable/ic_car"
                 android:layout_above="@+id/car_wash"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
@@ -133,10 +135,10 @@
                 android:id="@+id/sport_pic"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:src="@drawable/ic_sport"
                 android:layout_above="@+id/sport"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
-                android:scaleType="centerCrop"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -191,10 +193,10 @@
                 android:id="@+id/cold_pic"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:src="@drawable/ic_cold"
                 android:layout_above="@+id/cold"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
-                android:scaleType="centerCrop"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -237,6 +239,7 @@
                 android:id="@+id/colthes_pic"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:src="@drawable/ic_clothes"
                 android:layout_above="@+id/clothes"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
@@ -283,6 +286,7 @@
                 android:id="@+id/uv_pic"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:src="@drawable/ic_uv"
                 android:layout_above="@+id/uv"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
