@@ -23,7 +23,7 @@ public class AboutApplicationActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
-            actionBar.setTitle("关于天气");
+            actionBar.setTitle("关于酷云");
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         github = (Button)findViewById(R.id.github);

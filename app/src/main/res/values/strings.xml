@@ -17,7 +17,7 @@
     <string name="delteall">清空搜索记录</string>
     <string name="search_value">查找的城市</string>
     <string name="search_record">查找记录</string>
-    <string name="about_weather">关于天气</string>
+    <string name="about_weather">关于酷云</string>
     <string name="update_frequency">更新频率</string>
     <string name="choose_area">选择地区</string>
     <string name="aqi">AQI 指数</string>
