@@ -43,5 +43,7 @@
     <string name="title">预警名称:</string>
     <string name="alarm_info">预警信息:</string>
     <string name="qlty">空气质量</string>
+    <string name="school">所在学校 ：长沙理工大学</string>
+    <string name="major">修读专业 ：软件工程</string>
 </resources>
 
