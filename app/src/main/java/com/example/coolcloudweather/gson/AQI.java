@@ -12,5 +12,6 @@ public class AQI {
         public String o3;
         public String pm10;
         public String so2;
+        public String qlty;
     }
 }

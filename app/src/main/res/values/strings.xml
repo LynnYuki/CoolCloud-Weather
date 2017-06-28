@@ -42,5 +42,6 @@
     <string name="type">预警类型:</string>
     <string name="title">预警名称:</string>
     <string name="alarm_info">预警信息:</string>
+    <string name="qlty">空气质量</string>
 </resources>
 

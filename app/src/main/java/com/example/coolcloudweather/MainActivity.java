@@ -63,7 +63,7 @@ public class MainActivity extends BaseActivity{
 
     private static int SIGN_NO_INTERNET = 0;
     private static int SIGN_ALARMS = 1;
-
+    private static String infoText = "无";
     private ScrollView weatherLayout;
 
     private CoordinatorLayout mainLayout;
@@ -123,6 +123,8 @@ public class MainActivity extends BaseActivity{
     private TextView pm10Text;
 
     private TextView so2Text;
+
+    private TextView qlty;
 
     // 以下是 weather_forecast的控件
     private LinearLayout forecastLayout;
@@ -234,6 +236,7 @@ public class MainActivity extends BaseActivity{
         o3Text = (TextView)findViewById(R.id.o3_text);
         pm10Text = (TextView)findViewById(R.id.pm10_text);
         so2Text = (TextView)findViewById(R.id.so2_text);
+        qlty = (TextView)findViewById(R.id.qlty);
 
         // weather_suggestion
         comfortText = (TextView)findViewById(R.id.comfort_text);
@@ -518,51 +521,58 @@ public class MainActivity extends BaseActivity{
 
         // weather_aqi 空气质量
 
-        String infoText = "无";
-        if (weather.aqi == null){
-            aqiText.setText(infoText);
-            pm25Text.setText(infoText);
-            coText.setText(infoText);
-            o3Text.setText(infoText);
-            pm10Text.setText(infoText);
-            so2Text.setText(infoText);
-        }else{
-            if (weather.aqi.city.aqi != null){
+        if(weather.aqi !=null) {
+
+            if (weather.aqi.city.aqi != null) {
                 aqiText.setText(weather.aqi.city.aqi);
-            }else{
-                aqiText.setText(infoText);
+            } else {
+                matchText(aqiText);
             }
 
-            if (weather.aqi.city.pm25 != null){
+            if (weather.aqi.city.pm25 != null) {
                 pm25Text.setText(weather.aqi.city.pm25);
-            }else{
-                pm25Text.setText(infoText);
+            } else {
+                matchText(pm25Text);
             }
 
-            if (weather.aqi.city.co != null){
+            if (weather.aqi.city.co != null) {
                 coText.setText(weather.aqi.city.co);
-            }else{
-                coText.setText(infoText);
+            } else {
+                matchText(coText);
             }
 
-            if (weather.aqi.city.o3 != null){
+            if (weather.aqi.city.o3 != null) {
                 o3Text.setText(weather.aqi.city.o3);
-            }else{
-                o3Text.setText(infoText);
+            } else {
+                matchText(o3Text);
             }
 
-            if (weather.aqi.city.pm10 != null){
+            if (weather.aqi.city.pm10 != null) {
                 pm10Text.setText(weather.aqi.city.pm10);
-            }else{
-                pm10Text.setText(infoText);
+            } else {
+                matchText(pm10Text);
             }
 
-            if (weather.aqi.city.so2 != null){
+            if (weather.aqi.city.so2 != null) {
                 so2Text.setText(weather.aqi.city.so2);
-            }else{
-                so2Text.setText(infoText);
+            } else {
+                matchText(so2Text);
             }
-        }
+            if (weather.aqi.city.qlty != null) {
+                qlty.setText(weather.aqi.city.qlty);
+            } else {
+                matchText(qlty);
+            }
+        }else{
+                matchText(aqiText);
+                matchText(pm25Text);
+                matchText(coText);
+                matchText(o3Text);
+                matchText(pm10Text);
+                matchText(so2Text);
+                matchText(qlty);
+            }
+
         //设置字体显示粗体。
         aqiText.getPaint().setFakeBoldText(true);
         pm25Text.getPaint().setFakeBoldText(true);
@@ -617,9 +627,17 @@ public class MainActivity extends BaseActivity{
             alarm.setVisibility(View.GONE);
             //showDialog("当前没有预警信息，请放心出行", SIGN_ALARMS);
         }
+        //当hourly布局没有数据时自动隐藏
+        if (weather.hourlyList==null){
+            recyclerView.setVisibility(View.GONE);
+        }
 
     }
 
+    public void matchText(TextView txt){
+        txt.setText(infoText);
+
+    }
 
     /**
      * 停止定位

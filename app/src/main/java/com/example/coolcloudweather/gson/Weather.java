@@ -24,4 +24,5 @@ public class Weather {
 
     @SerializedName("hourly_forecast")
     public List<Hourly> hourlyList;
-}
+
+ }
