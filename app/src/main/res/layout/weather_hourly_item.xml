@@ -8,16 +8,16 @@
     <LinearLayout
         android:id="@+id/line1"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_centerInParent="true"
-        android:orientation="horizontal">
+        android:orientation="vertical">
     <TextView
         android:id="@+id/hour_text"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="match_parent"
         android:textColor="@color/colorFont"
         android:layout_centerInParent="true"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textSize="14sp"
         tools:ignore="InefficientWeight,ObsoleteLayoutParam" />
     </LinearLayout>
@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorFont"
         android:textSize="14sp"
-        android:layout_below="@+id/line1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="6dp"/>
 
@@ -38,7 +37,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorFont"
         android:textSize="14sp"
-        android:layout_above="@+id/line1"
+        android:layout_below="@+id/line1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="6dp"/>
 

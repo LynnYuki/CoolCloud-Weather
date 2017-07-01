@@ -63,7 +63,7 @@ public class ChooseAreaActivity extends BaseActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("选择地区");
+            actionBar.setTitle("选择城市");
         }
         /**
          * 搜索城市模块

@@ -12,28 +12,37 @@
         android:layout_height="match_parent"
         android:background="@color/colorWhite">
 
-        <TextView
-            android:id="@+id/qlty_info"
-            android:text="@string/qlty"
-            android:textSize="20sp"
-            android:layout_above="@+id/weather_info_text"
-            android:layout_marginLeft="125dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:textColor="@color/colorFont"
-            android:layout_height="wrap_content"
-            tools:ignore="RtlHardcoded" />
+       <LinearLayout
+           android:id="@+id/qlty_layout"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
+           android:layout_above="@+id/weather_info_text"
+           android:layout_marginBottom="5dp"
+           >
+           <TextView
+               android:id="@+id/qlty_info"
+               android:text="@string/qlty"
+               android:textSize="20sp"
+               android:layout_above="@+id/weather_info_text"
+               android:layout_width="wrap_content"
+               android:textColor="@color/colorFont"
+               android:layout_height="wrap_content"
+               tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
 
-        <TextView
-            android:id="@+id/qlty"
-            android:layout_toRightOf="@+id/qlty_info"
-            android:layout_alignBaseline="@+id/qlty_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textColor="@color/colorFont"
-            android:textSize="20sp"
-            tools:ignore="RtlHardcoded" />
+           <TextView
+               android:id="@+id/qlty"
+               android:layout_toRightOf="@+id/qlty_info"
+               android:layout_alignBaseline="@+id/qlty_info"
+               android:layout_marginLeft="5dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/colorFont"
+               android:textSize="20sp"
+               tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
+
+       </LinearLayout>
+
         <TextView
             android:id="@+id/degree_text"
             android:layout_width="wrap_content"

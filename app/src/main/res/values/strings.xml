@@ -19,14 +19,14 @@
     <string name="search_record">查找记录</string>
     <string name="about_weather">关于酷云</string>
     <string name="update_frequency">更新频率</string>
-    <string name="choose_area">选择地区</string>
+    <string name="choose_area">选择城市</string>
     <string name="aqi">AQI 指数</string>
     <string name="co">CO 指数</string>
     <string name="o3">O3 指数</string>
     <string name="pm10">PM10 指数</string>
     <string name="pm2_5">PM2.5 指数</string>
     <string name="so2">SO2 指数</string>
-    <string name="mode_by_lynnyuki">Mode By LynnYuki</string>
+    <string name="mode_by_lynnyuki">Designed By LynnYuki</string>
     <string name="度">°</string>
     <string name="cold">感冒指数</string>
     <string name="car_wash">洗车指数</string>
@@ -45,5 +45,6 @@
     <string name="qlty">空气质量</string>
     <string name="school">所在学校 ：长沙理工大学</string>
     <string name="major">修读专业 ：软件工程</string>
+    <string name="motto">知你冷暖，在你身边</string>
 </resources>
 
