@@ -738,7 +738,7 @@ public class MainActivity extends BaseActivity{
     }
 
     /**
-     * 更新动画，在一个动画结束时进行更新，再进行另一个动画
+     * 下拉刷新的渐变动画
      */
     private void showAnimationAlpha(final View view){
         Animation alpha = AnimationUtils.loadAnimation(MainActivity.this,R.anim.alpha_before);
@@ -766,7 +766,7 @@ public class MainActivity extends BaseActivity{
     }
 
     /**
-     * 设置自身的静态跳转函数选择城市的时候调用
+     * 城市名称获取
      */
     public static void actionStart(Context context ,String cityName){
         Intent intent = new Intent(context, MainActivity.class);

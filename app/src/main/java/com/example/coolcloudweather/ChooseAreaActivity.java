@@ -143,7 +143,7 @@ public class ChooseAreaActivity extends BaseActivity {
     //长按菜单响应函数
     public boolean onContextItemSelected(MenuItem item){
 
-        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+
 
         switch (item.getItemId()){
             case 0:
@@ -167,8 +167,7 @@ public class ChooseAreaActivity extends BaseActivity {
         }
         return super.onContextItemSelected(item);
     }
-
-
+    //注册定位监听器
     public class MyLocationListener implements BDLocationListener {
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
