@@ -237,7 +237,7 @@ public class ChooseAreaActivity extends BaseActivity {
 
     /**
      *
-     * 请求数据
+     * 请求位置数据
      */
     public void requestData(String address){
         HttpUtil.sendOkHttpRequest(address, new Callback() {

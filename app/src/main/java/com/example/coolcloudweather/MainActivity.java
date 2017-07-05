@@ -356,7 +356,7 @@ public class MainActivity extends BaseActivity{
                 showWeatherInfo(weather);
                 mainLayout.setVisibility(View.VISIBLE);
             }else {
-                // 无缓存时向服务器查询数据
+                // 无缓存时通过定位向服务器查询数据
                 if (getNetworkInfo() != null && getNetworkInfo().isAvailable()){
                     // 查询完之后显示 coordinatorLayout.setVisibility(View.VISIBLE);
                     LocationClientOption option = new LocationClientOption();
