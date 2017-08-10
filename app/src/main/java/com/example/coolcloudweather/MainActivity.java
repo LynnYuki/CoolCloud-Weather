@@ -429,7 +429,7 @@ public class MainActivity extends BaseActivity{
      */
     public void requestWeather(final String cityName){
 
-        String address = "https://free-api.heweather.com/v5/weather?city=" + cityName + "&key=bc0418b57b2d4918819d3974ac1285d9";
+        String address = "https://free-api.heweather.com/v5/weather?city=" + cityName + "&key=8b4bef1d66164634b4ff3188f2189ce4";
         HttpUtil.sendOkHttpRequest(address, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
