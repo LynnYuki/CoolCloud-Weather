@@ -223,7 +223,7 @@ public class ChooseAreaActivity extends BaseActivity {
             // 如果不为空，则进行查询
             if (getNetworkInfo() != null && getNetworkInfo().isAvailable()){
                 //从和风数据源查找城市
-                String address = "https://api.heweather.com/v5/search?city=" + cityName + "&key=bc0418b57b2d4918819d3974ac1285d9";
+                String address = "https://free-api.heweather.com/v5/search?city=" + cityName + "&key=8b4bef1d66164634b4ff3188f2189ce4";
                 requestData(address);
             }else{
                 showShort("当前网络无连接");
@@ -335,8 +335,8 @@ public class ChooseAreaActivity extends BaseActivity {
 
     /**
      * 重新定位
-     */
-    public  void reloctaion(){
+                */
+        public  void reloctaion(){
 
         if (getNetworkInfo() != null && getNetworkInfo().isAvailable()){
                 LocationClientOption option = new LocationClientOption();

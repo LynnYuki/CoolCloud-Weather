@@ -23,6 +23,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -428,7 +429,7 @@ public class MainActivity extends BaseActivity{
      */
     public void requestWeather(final String cityName){
 
-        String address = "https://api.heweather.com/v5/weather?city=" + cityName + "&key=bc0418b57b2d4918819d3974ac1285d9";
+        String address = "https://free-api.heweather.com/v5/weather?city=" + cityName + "&key=bc0418b57b2d4918819d3974ac1285d9";
         HttpUtil.sendOkHttpRequest(address, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -454,8 +455,11 @@ public class MainActivity extends BaseActivity{
                             editor.putString("cityName",cityName);
                             editor.apply();
                             showWeatherInfo(weather);
+                            Log.d("TAG","数据状态"+weather.status);
                         }else{
                             showShort("获取天气信息失败");
+                            Log.d("TAG","数据状态"+weather.status);
+
                         }
                     }
                 });
