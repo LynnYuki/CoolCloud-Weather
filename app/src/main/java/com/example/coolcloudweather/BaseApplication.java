@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 
 import com.example.coolcloudweather.util.TaskKiller;
 
@@ -20,8 +21,10 @@ public class BaseApplication extends Application {
 
         context = getApplicationContext();
         LitePal.initialize(context);
+        Log.d("TAG","context"+context);
         super.onCreate();
         showTheme();
+
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

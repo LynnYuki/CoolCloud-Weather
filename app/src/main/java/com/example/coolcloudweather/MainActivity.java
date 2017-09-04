@@ -207,13 +207,6 @@ public class MainActivity extends BaseActivity{
         weaherNowLayout = (RelativeLayout)findViewById(R.id.weather_now_layout);
         updateTimeText = (TextView)findViewById(R.id.update_time_text);
 
-        //weather_alarms
-        title = (TextView)findViewById(R.id.title);
-        type = (TextView)findViewById(R.id.type);
-        level = (TextView)findViewById(R.id.level);
-        stat = (TextView)findViewById(R.id.stat);
-        txt = (TextView )findViewById(R.id.txt);
-        alarm = (LinearLayout)findViewById(R.id.alarm_layout);
         // weather_hour
         hourDegree = (TextView)findViewById(R.id.hour_degree);
         hourText = (TextView)findViewById(R.id.hour_text);
@@ -618,23 +611,8 @@ public class MainActivity extends BaseActivity{
         weatherLayout.setVisibility(View.VISIBLE);
         mainLayout.setVisibility(View.VISIBLE);
 
-        // 天气预警
-        if (weather.alarms != null){
-              title.setText(weather.alarms.title);
-              level.setText(weather.alarms.level);
-              type.setText(weather.alarms.type);
-              stat.setText(weather.alarms.stat);
-              txt.setText(weather.alarms.txt);
-              alarm.setVisibility(View.VISIBLE);
 
-        }else{
-            alarm.setVisibility(View.GONE);
-            //showDialog("当前没有预警信息，请放心出行", SIGN_ALARMS);
-        }
-        //当hourly布局没有数据时自动隐藏
-        if (weather.hourlyList==null){
-            recyclerView.setVisibility(View.GONE);
-        }
+
 
     }
 

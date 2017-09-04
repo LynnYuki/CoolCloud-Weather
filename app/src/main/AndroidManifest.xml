@@ -30,7 +30,8 @@
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".SplashActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,6 +50,8 @@
         <activity android:name=".AboutApplicationActivity" />
         <activity android:name=".AutoUpdateTimeAcitivity" />
         <activity android:name=".ChooseAreaActivity" />
+        <activity android:name=".MainActivity"/>
+
     </application>
 
 </manifest>
