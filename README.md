@@ -30,3 +30,10 @@
 <img src="/screenshots/9.jpg" width = "225" height = "400" alt="夜间"/>
 <img src="/screenshots/10.jpg" width = "225" height = "400" alt="夜间"/>
 <img src="/screenshots/11.jpg" width = "225" height = "400" alt="夜间"/>
+
+### 用到的开源库
+LitePal</br>
+OKHttp</br>
+JSON</br>
+和风天气API</br>
+百度定位API
