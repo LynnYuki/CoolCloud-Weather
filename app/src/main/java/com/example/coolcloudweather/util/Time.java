@@ -51,8 +51,8 @@ public class Time {
      * 输入一个数字, 输出是星期几的字符串: 2  ->  周二
      */
     public static String parseWeak(int weak){
-        String[] weakday = new String[]{"周一", "周二", "周三", "周四", "周五", "周六", "周日"};
-        int index = (weak - 1)%7;
+        String[] weakday = new String[]{ "周一","周二", "周三", "周四", "周五", "周六","周日"};
+        int index = (weak-1)%7;
         return weakday[index];
     }
 

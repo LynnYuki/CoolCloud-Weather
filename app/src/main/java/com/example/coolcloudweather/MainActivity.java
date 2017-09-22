@@ -334,6 +334,7 @@ public class MainActivity extends BaseActivity{
 
     @Override
     public void initData() {
+        showAnimationAlpha(weaherNowLayout);
         String cityName = getIntent().getStringExtra("cityName");
         String currentPosition = getIntent().getStringExtra("currentPosition");
         if (!TextUtils.isEmpty(cityName)){
